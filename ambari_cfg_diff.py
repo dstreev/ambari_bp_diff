@@ -7,6 +7,7 @@ import sys
 import os
 import json
 from dict_diff import dict_compare
+from datetime import date
 
 VERSION = "0.1.1"
 
@@ -154,6 +155,16 @@ def compare(referencebp, checkbp, output):
     output.write("\n\t".join(eSections))
     output.write("\n\n")
 
+    today = date.today()
+    tdy = '{message:{fill}{align}{width}}'.format(
+        message='Date',
+        fill=' ',
+        align='>',
+        width=section_width/5,
+    ) + " : " + str(today) + "\n"
+
+    output.write(tdy)
+
     ref = '{message:{fill}{align}{width}}'.format(
         message='Reference Blueprint',
         fill=' ',
@@ -161,7 +172,7 @@ def compare(referencebp, checkbp, output):
         width=section_width/5,
     ) + " : " + referencebp
     output.write(ref)
-    print (ref + "\n")
+    print (ref)
 
     output.write("\n")
     check = '{message:{fill}{align}{width}}'.format(
@@ -170,7 +181,7 @@ def compare(referencebp, checkbp, output):
         align='>',
         width=section_width/5,
     ) + " : " + checkbp
-    print (check + "\n")
+    print (check)
     output.write(check)
 
     otpt = '{message:{fill}{align}{width}}'.format(
@@ -180,7 +191,7 @@ def compare(referencebp, checkbp, output):
         width=section_width/5,
     ) + " : " + output_filename
 
-    print(otpt + "\n")
+    print(otpt)
 
     output.write("\n")
 
